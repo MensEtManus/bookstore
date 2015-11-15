@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+		'registration',
 		'store',
 )
 
@@ -53,6 +54,11 @@ ROOT_URLCONF = 'bookstore.urls'
 
 WSGI_APPLICATION = 'bookstore.wsgi.application'
 
+# template context processors
+TEMPLATE_CONTEXT_PROCESSORS = ( 
+		'django.core.context_processors.request',
+		'django.contrib.auth.context_processors.auth',
+)
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -82,3 +88,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Registration
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/store/'
+
+# Email Settings
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "tco15hackathon@gmail.com"
+EMAIL_HOST_PASSWORD = "1879314!"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "books@mysterybooks.com"
