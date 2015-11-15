@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+		'social.apps.django_app.default',
 		'registration',
 		'store',
 )
@@ -52,13 +53,37 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'bookstore.urls'
 
+# template settings 
+TEMPLATES = [
+		{
+			'BACKEND': 'django.template.backends.django.DjangoTemplates',
+			'DIRS': [],
+			'APP_DIRS': True,
+			'OPTIONS': {
+					'context_processors': [
+						'django.template.context_processors.debug',
+						'django.template.context_processors.request',
+						'django.contrib.auth.context_processors.auth',
+						'django.contrib.messages.context_processors.messages',
+						'social.apps.django_app.context_processors.backends',
+						'social.apps.django_app.context_processors.login_redirect',
+					],
+				},
+		},
+]
 WSGI_APPLICATION = 'bookstore.wsgi.application'
 
-# template context processors
+AUTHENTICATION_BACKENDS = (
+		'social.backends.facebook.FacebookOAuth2',
+		'django.contrib.auth.backends.ModelBackend'
+)
+
+'''
 TEMPLATE_CONTEXT_PROCESSORS = ( 
 		'django.core.context_processors.request',
 		'django.contrib.auth.context_processors.auth',
 )
+'''
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -102,3 +127,8 @@ EMAIL_HOST_PASSWORD = "1879314!"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "books@mysterybooks.com"
+
+
+# Social Auth Facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '201888763480433'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'ed8bc90910429d105cb333f55eaaf565'
