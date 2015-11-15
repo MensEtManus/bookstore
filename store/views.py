@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render 
 from .models import Book
 
 # Create your views here.
@@ -10,4 +10,8 @@ def store(request):
 	context = {
 			'count': count,
 	}
+	if request.user.is_authenticated():
+		request.session['location'] = "Earth"
+	else:
+		request.session['location'] = "unknown"
 	return render(request, 'store.html', context)
