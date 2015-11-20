@@ -69,3 +69,6 @@ target/
 # Mac OS
 .DS_Store
 
+# Compiled static assets
+static/
+
